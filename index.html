@@ -311,7 +311,11 @@ WISHES.forEach((w,i)=>{const d=document.createElement('div');d.className='nt rv'
 /* loader */
 const cn=document.getElementById('cn'),bf=document.getElementById('bf'),ms=document.getElementById('ms'),ld=document.getElementById('ld');
 const MSGS=['getting things ready…','dusting off the memories…','wrapping the wishes…','almost there…'];
-let ready=false,opened=false;addEventListener('load',()=>ready=true);setTimeout(()=>ready=true,5000);
+let ready=false,opened=false;
+/* Fire ready as soon as DOM content + images are done, don't wait for audio */
+addEventListener('load',()=>ready=true);
+/* Shorter fallback (2s) so mobile doesn't get stuck on blue screen */
+setTimeout(()=>{ready=true},2000);
 const L0=performance.now(),LD=3600;
 (function lt(n){const p=Math.min((n-L0)/LD,1),e=1-Math.pow(1-p,2);cn.textContent=Math.round(e*53);bf.style.width=e*100+'%';ms.textContent=MSGS[Math.min(3,Math.floor(p*4))];if(p<1||!ready)requestAnimationFrame(lt);else openLd()})(L0);
 function openLd(){if(opened)return;opened=true;cn.textContent=53;bf.style.width='100%';ms.style.display='none';const b=document.getElementById('enter');b.style.display='inline-block';b.onclick=()=>{b.onclick=null;startMusic();b.style.display='none';ld.classList.add('open');document.body.classList.remove('lock');document.getElementById('hero').classList.add('go');setTimeout(()=>ld.remove(),1500)}}
@@ -386,7 +390,7 @@ function bass(m,t,d){const o=actx.createOscillator(),g=actx.createGain();o.type=
 function pad(ch,t,d){const f=actx.createBiquadFilter();f.type='lowpass';f.frequency.value=950;const g=actx.createGain();g.gain.setValueAtTime(0.0001,t);g.gain.linearRampToValueAtTime(.05,t+.9);g.gain.setValueAtTime(.05,t+d-.8);g.gain.linearRampToValueAtTime(0.0001,t+d+.2);f.connect(g);g.connect(master);ch.slice(0,3).forEach(m=>[-7,7].forEach(c=>{const o=actx.createOscillator();o.type='sawtooth';o.frequency.value=hz(m);o.detune.value=c;o.connect(f);o.start(t);o.stop(t+d+.3)}))}
 function sched(){while(nextT<actx.currentTime+.7){const bar=Math.floor(step/8)%4,i=step%8;pluck(CH[bar][PAT[i]],nextT);if(i===0){bass(BS[bar],nextT,E*8);pad(CH[bar],nextT,E*8)}nextT+=E;step++}}
 function startMusic(){if(started)return;started=true;mb.style.display='flex';
- if(MUSIC_SRC){audioEl=new Audio(MUSIC_SRC);audioEl.loop=true;audioEl.volume=0;audioEl.play().then(()=>{let v=0;const fi=setInterval(()=>{v=Math.min(VOL,v+.04);audioEl.volume=v;if(v>=VOL)clearInterval(fi)},150)}).catch(()=>{});return}
+ if(MUSIC_SRC){audioEl=new Audio();audioEl.preload='none';audioEl.loop=true;audioEl.volume=0;audioEl.src=MUSIC_SRC;audioEl.play().then(()=>{let v=0;const fi=setInterval(()=>{v=Math.min(VOL,v+.04);audioEl.volume=v;if(v>=VOL)clearInterval(fi)},150)}).catch(()=>{});return}
  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;actx=new AC();master=actx.createGain();master.gain.setValueAtTime(0,actx.currentTime);
  const len=Math.floor(actx.sampleRate*2.2),buf=actx.createBuffer(2,len,actx.sampleRate);for(let c=0;c<2;c++){const d=buf.getChannelData(c);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.4)}
  const cv2=actx.createConvolver();cv2.buffer=buf;const wet=actx.createGain();wet.gain.value=.38;master.connect(actx.destination);master.connect(cv2);cv2.connect(wet);wet.connect(actx.destination);
