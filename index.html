@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover">
 <title>Happy Birthday, Dad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 :root[data-theme="dark"]{--sky:#eaf5ff}
 html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--sky);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--sky);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased;max-width:100vw}
 body.lock{overflow:hidden;height:100%}
 :focus-visible{outline:3px solid var(--sun);outline-offset:3px}
 section{padding:7rem 1.4rem;position:relative;overflow:hidden}
@@ -22,10 +22,10 @@ section{padding:7rem 1.4rem;position:relative;overflow:hidden}
 .bl{background:linear-gradient(170deg,var(--az),var(--az2) 70%,var(--deep));color:#fff}
 .hand{font-family:var(--hand);font-weight:700;font-size:1.65rem;line-height:1.2;display:inline-block;color:var(--az2)}
 .bl .hand,.hero .hand{color:var(--sun2)}
-h2{font-family:var(--disp);font-weight:500;font-size:clamp(2.2rem,6.8vw,4rem);line-height:1.06;letter-spacing:-.02em;margin:.3rem 0 1.5rem}
+h2{font-family:var(--disp);font-weight:500;font-size:clamp(2.2rem,8vw,4rem);line-height:1.06;letter-spacing:-.02em;margin:.3rem 0 1.5rem}
 .lt h2{color:var(--ink)}.bl h2{color:#fff}
 h2 i{font-weight:400;color:var(--az2)}.bl h2 i{color:var(--sun2)}
-p{max-width:36em;margin-bottom:1.15rem;font-size:clamp(1.05rem,2.6vw,1.2rem)}
+p{max-width:36em;margin-bottom:1.15rem;font-size:clamp(1.05rem,4vw,1.2rem)}
 .lt p{color:#2b4a7d}.bl p{color:rgba(255,255,255,.92)}
 #pg{position:fixed;top:0;left:0;height:4px;width:100%;background:var(--sun);transform:scaleX(0);transform-origin:left;z-index:90;box-shadow:0 0 12px rgba(255,182,39,.7)}
 
@@ -73,7 +73,7 @@ p{max-width:36em;margin-bottom:1.15rem;font-size:clamp(1.05rem,2.6vw,1.2rem)}
 .in .sprout .lf,.in .sprout .lf2{fill:rgba(255,182,39,.6)}
 .hero .for{transform:rotate(-3deg);font-size:clamp(1.7rem,5vw,2.4rem)}
 .big{font-family:var(--disp);font-weight:700;font-size:clamp(9rem,42vw,22rem);line-height:.82;letter-spacing:-.05em;margin:.6rem 0 .8rem;color:#fff;text-shadow:0 12px 0 rgba(13,63,168,.35),0 0 90px rgba(255,211,107,.55);font-variation-settings:"opsz" 144}
-.hero h1{font-family:var(--disp);font-weight:400;font-size:clamp(1.9rem,7.2vw,3.5rem);line-height:1.1;position:relative;display:inline-block}
+.hero h1{font-family:var(--disp);font-weight:400;font-size:clamp(1.9rem,8vw,3.5rem);line-height:1.1;position:relative;display:inline-block}
 .hero h1 i{color:var(--sun2)}
 .ul{position:absolute;left:-2%;bottom:-.35em;width:104%;height:.35em;overflow:visible}
 .ul path{fill:none;stroke:var(--sun2);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
@@ -101,7 +101,7 @@ p{max-width:36em;margin-bottom:1.15rem;font-size:clamp(1.05rem,2.6vw,1.2rem)}
 .circ svg{position:absolute;left:-8%;top:-14%;width:116%;height:130%;overflow:visible;pointer-events:none}
 .circ path{fill:none;stroke:var(--sun);stroke-width:3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.4s .6s ease}
 .in .circ path{stroke-dashoffset:0}
-.lit{font-family:var(--disp);font-weight:400;font-size:clamp(1.9rem,5.8vw,3.3rem);line-height:1.22;color:var(--ink);max-width:19em;margin:3.5rem 0 0}
+.lit{font-family:var(--disp);font-weight:400;font-size:clamp(1.9rem,7vw,3.3rem);line-height:1.22;color:var(--ink);max-width:19em;margin:3.5rem 0 0}
 .lit span{opacity:.16;transition:opacity .5s}.lit span.on{opacity:1}.lit span.k.on{color:var(--az2)}
 .dd{position:absolute;pointer-events:none;z-index:1;opacity:.5}
 
@@ -121,9 +121,9 @@ p{max-width:36em;margin-bottom:1.15rem;font-size:clamp(1.05rem,2.6vw,1.2rem)}
 .bk .hand{margin-top:1.5rem;font-size:1.5rem;max-width:14em;font-weight:500;color:#fff;line-height:1.25}
 
 /* train */
-.gallery{padding-left:0;padding-right:0}
+.gallery{padding-left:0;padding-right:0;overflow:hidden}
 .gallery .wrap{padding:0 1.4rem}
-.train{margin-top:3rem;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab;padding:1.6rem 0 0}
+.train{margin-top:3rem;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab;padding:1.6rem 0 0;max-width:100vw;contain:layout}
 .train::-webkit-scrollbar{display:none}.train:active{cursor:grabbing}
 .cars{display:flex;width:max-content;align-items:flex-end;padding-left:1.4rem}
 .car{position:relative;flex:0 0 auto;width:min(66vw,320px);padding:.9rem .9rem 0;background:#fff;border:2px solid var(--ink);border-radius:16px 16px 6px 6px;margin-right:34px;box-shadow:8px 8px 0 var(--az);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
@@ -181,6 +181,7 @@ footer .hand{font-size:1.4rem;color:var(--sun2);opacity:.85}
 .sp{position:fixed;z-index:80;pointer-events:none;font-size:16px;animation:sp 1s ease-out forwards}
 @keyframes sp{to{transform:translate(var(--x),var(--y)) scale(.2) rotate(120deg);opacity:0}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.hero .in>*,.rv{opacity:1;transform:none;filter:none}.ul path,.circ path{stroke-dashoffset:0}.lit span{opacity:1}.mk{background-size:100% 100%}.nt.rv{transform:rotate(var(--rot))}}
+@media (max-width:480px){section{padding:5rem 1.2rem}.hero{padding:3rem 1.2rem}.big{font-size:clamp(7rem,38vw,14rem)}.hero .sub{font-size:1.1rem}.paper{padding:2rem 1.2rem}.wall{columns:1}.shelf{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body class="lock">
